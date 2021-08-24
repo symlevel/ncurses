@@ -207,7 +207,7 @@
 #define HAVE_WORKING_FORK 1
 #define USE_FOPEN_BIN_R 1
 #ifndef __APPLE__
-define USE_OPENPTY_HEADER <util.h>
+#define USE_OPENPTY_HEADER <util.h>
 #else
 #define USE_OPENPTY_HEADER <pty.h>
 #endif
