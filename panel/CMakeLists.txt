@@ -16,7 +16,10 @@ add_library(panel STATIC
             p_user.c
             p_win.c)
 
-target_compile_definitions(panel PRIVATE "_DEFAULT_SOURCE" "_XOPEN_SOURCE=600")
+target_compile_definitions(panel PRIVATE "_DEFAULT_SOURCE"
+                                         "_XOPEN_SOURCE=600"
+                                         "HAVE_CONFIG_H"
+                                         "DATA_DIR=\"/usr/share\"")
 target_include_directories(panel PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}"
                                          "${CMAKE_CURRENT_SOURCE_DIR}/../include"
                                          "${CMAKE_CURRENT_SOURCE_DIR}/../ncurses")

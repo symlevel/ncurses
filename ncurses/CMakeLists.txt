@@ -24,7 +24,6 @@ add_library(ncurses STATIC
             tinfo/lib_napms.c
             tinfo/lib_setup.c
             tinfo/home_terminfo.c
-            tinfo/make_hash.c
             tinfo/lib_ttyflags.c
             tinfo/free_ttype.c
             tinfo/trim_sgr0.c
@@ -39,7 +38,6 @@ add_library(ncurses STATIC
             tinfo/entries.c
             tinfo/access.c
             tinfo/hashed_db.c
-            tinfo/make_keys.c
             tinfo/add_tries.c
             tinfo/db_iterator.c
             tinfo/lib_tparm.c
@@ -145,11 +143,14 @@ add_library(ncurses STATIC
             base/resizeterm.c
             report_offsets.c
             report_hashing.c
+            "${CMAKE_CURRENT_SOURCE_DIR}/../gen/ncurses/codes.c"
             "${CMAKE_CURRENT_SOURCE_DIR}/../gen/ncurses/comp_captab.c"
             "${CMAKE_CURRENT_SOURCE_DIR}/../gen/ncurses/comp_userdefs.c"
-            "${CMAKE_CURRENT_SOURCE_DIR}/../gen/ncurses/codes.c"
+            "${CMAKE_CURRENT_SOURCE_DIR}/../gen/ncurses/expanded.c"
             "${CMAKE_CURRENT_SOURCE_DIR}/../gen/ncurses/fallback.c"
             "${CMAKE_CURRENT_SOURCE_DIR}/../gen/ncurses/lib_gen.c"
+            "${CMAKE_CURRENT_SOURCE_DIR}/../gen/ncurses/lib_keyname.c"
+            "${CMAKE_CURRENT_SOURCE_DIR}/../gen/ncurses/names.c"
             "${CMAKE_CURRENT_SOURCE_DIR}/../gen/ncurses/unctrl.c")
 
 if("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
@@ -168,7 +169,10 @@ else()
                    tty/lib_tstp.c)
 endif()
 
-target_compile_definitions(ncurses PRIVATE "_DEFAULT_SOURCE" "_XOPEN_SOURCE=600")
+target_compile_definitions(ncurses PRIVATE "_DEFAULT_SOURCE" 
+                                           "_XOPEN_SOURCE=600"
+                                           "HAVE_CONFIG_H"
+                                           "DATA_DIR=\"/usr/share\"")
 target_include_directories(ncurses PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}"
                                            "${CMAKE_CURRENT_SOURCE_DIR}/../include"
                                            "${CMAKE_CURRENT_SOURCE_DIR}/../gen/ncurses")

@@ -53,12 +53,18 @@
 #define PACKAGE "ncurses"
 #define NCURSES_VERSION "6.2"
 #define NCURSES_PATCHDATE 20200212
+#ifdef __APPLE__
+#define SYSTEM_NAME "darwin20.6.0"
+#else
 #define SYSTEM_NAME "linux-gnu"
+#endif
 #if 0
 #include <stdlib.h>
 #endif
 #define HAVE_LONG_FILE_NAMES 1
+#ifdef __linux__
 #define MIXEDCASE_FILENAMES 1
+#endif
 #define TERMINFO_DIRS "/usr/share/terminfo"
 #define TERMINFO "/usr/share/terminfo"
 #define HAVE_BIG_CORE 1
@@ -73,7 +79,11 @@
 #define USE_LINKS 1
 #define HAVE_LANGINFO_CODESET 1
 #define HAVE_FSEEKO 1
+#ifdef __APPLE__
+#define RGB_PATH "/usr/lib64/X11/rgb.txt"
+#else
 #define RGB_PATH "/usr/share/X11/rgb.txt"
+#endif
 #define STDC_HEADERS 1
 #define HAVE_SYS_TYPES_H 1
 #define HAVE_SYS_STAT_H 1
@@ -142,11 +152,17 @@
 #define HAVE_STRDUP 1
 #define HAVE_SYS_TIME_SELECT 1
 #define SIG_ATOMIC_T volatile sig_atomic_t
+#ifdef __APPLE__
+#define HAVE_ERRNO 1
+#endif
 #define HAVE_GETCWD 1
 #define HAVE_GETEGID 1
 #define HAVE_GETEUID 1
 #define HAVE_GETOPT 1
 #define HAVE_GETTTYNAM 1
+#ifdef __APPLE__
+#define HAVE_ISSETUGID 1
+#endif
 #define HAVE_LOCALECONV 1
 #define HAVE_POLL 1
 #define HAVE_PUTENV 1
@@ -157,6 +173,9 @@
 #define HAVE_SETENV 1
 #define HAVE_SETVBUF 1
 #define HAVE_SIGACTION 1
+#ifdef __APPLE__
+#define HAVE_SIGVEC 1
+#endif
 #define HAVE_STRDUP 1
 #define HAVE_STRSTR 1
 #define HAVE_SYSCONF 1
@@ -166,7 +185,9 @@
 #define HAVE_VSNPRINTF 1
 #define HAVE_ISASCII 1
 #define HAVE_NANOSLEEP 1
+#ifndef __APPLE__
 #define HAVE_TERMIO_H 1
+#endif
 #define HAVE_TERMIOS_H 1
 #define HAVE_UNISTD_H 1
 #define HAVE_SYS_IOCTL_H 1
@@ -175,7 +196,9 @@
 #define HAVE_UNISTD_H 1
 #define HAVE_MKSTEMP 1
 #define HAVE_SIZECHANGE 1
+#ifndef __APPLE__
 #define HAVE_WORKING_POLL 1
+#endif
 #define HAVE_VA_COPY 1
 #define HAVE_UNISTD_H 1
 #define HAVE_FORK 1
@@ -183,7 +206,11 @@
 #define HAVE_WORKING_VFORK 1
 #define HAVE_WORKING_FORK 1
 #define USE_FOPEN_BIN_R 1
+#ifndef __APPLE__
+define USE_OPENPTY_HEADER <util.h>
+#else
 #define USE_OPENPTY_HEADER <pty.h>
+#endif
 #define USE_XTERM_PTY 1
 #define HAVE_TYPEINFO 1
 #define HAVE_IOSTREAM 1
