@@ -27,3 +27,4 @@ target_include_directories(panel PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../gen/incl
 
 target_link_libraries(panel PUBLIC ncurses)
 
+install(TARGETS panel DESTINATION "lib")
