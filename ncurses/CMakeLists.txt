@@ -178,4 +178,7 @@ target_include_directories(ncurses PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}"
                                            "${CMAKE_CURRENT_SOURCE_DIR}/../gen/ncurses")
 target_include_directories(ncurses PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../gen/include")
 
-install(TARGETS ncurses DESTINATION "lib")
+install(TARGETS ncurses
+        RUNTIME DESTINATION "bin"
+        LIBRARY DESTINATION "lib"
+        ARCHIVE DESTINATION "lib")

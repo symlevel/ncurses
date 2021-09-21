@@ -1,5 +1,5 @@
 
-add_library(panel STATIC
+add_library(panel
             p_above.c
             panel.c
             p_below.c
@@ -27,4 +27,7 @@ target_include_directories(panel PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../gen/incl
 
 target_link_libraries(panel PUBLIC ncurses)
 
-install(TARGETS panel DESTINATION "lib")
+install(TARGETS panel
+        RUNTIME DESTINATION "bin"
+        LIBRARY DESTINATION "lib"
+        ARCHIVE DESTINATION "lib")
